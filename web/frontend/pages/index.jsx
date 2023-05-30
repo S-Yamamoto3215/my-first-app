@@ -10,14 +10,17 @@ import {
 export default function HomePage() {
   const navigate = useNavigate();
 
-  const loadingMarkup = (
+  const isLoading = true;
+  const QRcodes = [];
+
+  const loadingMarkup = isLoading ? (
     <Card sectioned>
       <Loading />
       <SkeletonBodyText />
     </Card>
-  );
+  ) : null;
 
-  const emptyStateMarkup = (
+  const emptyStateMarkup = !isLoading && !QRcodes?.length ? (
     <Card sectioned>
       <EmptyState
         heading="Create a QR code"
@@ -30,7 +33,7 @@ export default function HomePage() {
         <p>Allow customers to scan codes and buy products using their phones.</p>
       </EmptyState>
     </Card>
-  );
+  ) : null;
 
   return (
     <Page>
