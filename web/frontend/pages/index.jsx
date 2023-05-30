@@ -1,13 +1,21 @@
-import { useNavigate, TitleBar } from "@shopify/app-bridge-react";
+import { useNavigate, TitleBar, Loading } from "@shopify/app-bridge-react";
 import {
   Card,
   EmptyState,
   Layout,
   Page,
+  SkeletonBodyText,
 } from "@shopify/polaris";
 
 export default function HomePage() {
   const navigate = useNavigate();
+
+  const loadingMarkup = (
+    <Card sectioned>
+      <Loading />
+      <SkeletonBodyText />
+    </Card>
+  );
 
   const emptyStateMarkup = (
     <Card sectioned>
@@ -35,6 +43,7 @@ export default function HomePage() {
       />
       <Layout>
         <Layout.Section>
+          {loadingMarkup}
           {emptyStateMarkup}
         </Layout.Section>
       </Layout>
